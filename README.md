@@ -1,7 +1,7 @@
 
 # Projeto Gerenciador de Jogadores do Corinthians
 
-Esse é um projeto feito para a disciplina de Desenvolvimento Web 1 do curso de Análise e Desenvolvimento de Sistemas da Universidade Federal do Paraná, ministrada pelo professor Lucas Jośe de Souza.
+Esse é um projeto feito para a disciplina de Desenvolvimento Web 1 do curso de Análise e Desenvolvimento de Sistemas da Universidade Federal do Paraná, ministrada pelo professor Lucas José de Souza.
 
 Alunos: 
 
@@ -32,9 +32,7 @@ cd Web1TrabalhoFinal
 
 cd backend-web1
 
-npm install
-
-npm start
+node index.js
 
 3. Após configurar o backend, navegue até a pasta do frontend para configurá-lo também com:
 cd frontend-web1

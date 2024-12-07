@@ -6,6 +6,8 @@ const App = () => {
     const [jogadores, setJogadores] = useState([]);
     const [novoJogador, setNovoJogador] = useState({ nome: '', posicao: '', idade: '' });
     const [editarId, setEditarId] = useState(null);
+    const [modalVisible, setModalVisible] = useState(false);  // Estado para controlar a visibilidade do modal
+    const [jogadorParaRemover, setJogadorParaRemover] = useState(null);  // Jogador selecionado para remoção
 
     // Carregar os jogadores ao carregar a página
     useEffect(() => {
@@ -25,18 +27,31 @@ const App = () => {
     };
 
     // Remover jogador
-    const removerJogador = id => {
-        axios.delete(`http://localhost:3001/jogadores/${id}`)
-            .then(() => setJogadores(jogadores.filter(jogador => jogador.id !== id)))
+    const removerJogador = () => {
+        axios.delete(`http://localhost:3001/jogadores/${jogadorParaRemover}`)
+            .then(() => {
+                setJogadores(jogadores.filter(jogador => jogador.id !== jogadorParaRemover));
+                setModalVisible(false); 
+            })
             .catch(error => console.error('Erro ao remover jogador:', error));
     };
 
-    // Alterar estado para exibir o formulário de edição
+    // Exibir o modal de confirmação
+    const mostrarModal = (id) => {
+        setJogadorParaRemover(id);
+        setModalVisible(true);
+    };
+
+    // Fechar o modal de confirmação
+    const fecharModal = () => {
+        setModalVisible(false);
+        setJogadorParaRemover(null);
+    };
+
     const handleEditar = (id) => {
         setEditarId(id);
     };
 
-    // Fechar o formulário de edição
     const fecharEdicao = () => {
         setEditarId(null);
     };
@@ -45,7 +60,6 @@ const App = () => {
         <div>
             <h1>Cadastro de Jogadores</h1>
 
-            
             <input
                 type="text"
                 placeholder="Nome"
@@ -66,19 +80,27 @@ const App = () => {
             />
             <button onClick={adicionarJogador}>Adicionar Jogador</button>
 
-           
             <ul>
                 {jogadores.map(jogador => (
                     <li key={jogador.id}>
                         {jogador.nome} - {jogador.posicao} - {jogador.idade} anos
                         <button onClick={() => handleEditar(jogador.id)}>Editar</button>
-                        <button onClick={() => removerJogador(jogador.id)}>Remover</button>
+                        <button onClick={() => mostrarModal(jogador.id)}>Remover</button>
                     </li>
                 ))}
             </ul>
 
-            
             {editarId && <EditarJogador jogadorId={editarId} onClose={fecharEdicao} />}
+
+            {modalVisible && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h3>Tem certeza que deseja remover este jogador?</h3>
+                        <button onClick={removerJogador}>Sim</button>
+                        <button onClick={fecharModal}>Não</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

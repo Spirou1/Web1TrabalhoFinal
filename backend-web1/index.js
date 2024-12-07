@@ -60,5 +60,33 @@ app.delete('/jogadores/:id', (req, res) => {
     });
 });
 
+app.put('/jogadores/:id', (req, res) => {
+    const { id } = req.params;
+    const { nome, posicao, idade } = req.body;
+
+    // Valida se todos os campos necessários estão preenchidos
+    if (!nome || !posicao || !idade) {
+        return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
+    }
+
+    // Atualiza o jogador no banco de dados
+    db.query(
+        'UPDATE jogadores SET nome = ?, posicao = ?, idade = ? WHERE id = ?',
+        [nome, posicao, idade, id],
+        (err, result) => {
+            if (err) {
+                return res.status(500).json({ message: 'Erro ao atualizar jogador', error: err });
+            }
+
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ message: 'Jogador não encontrado' });
+            }
+
+            res.status(200).json({ message: 'Jogador atualizado com sucesso' });
+        }
+    );
+});
+
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));

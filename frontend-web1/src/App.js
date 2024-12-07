@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import EditarJogador from './components/EditarJogador';
 
 const App = () => {
     const [jogadores, setJogadores] = useState([]);
     const [novoJogador, setNovoJogador] = useState({ nome: '', posicao: '', idade: '' });
+    const [editarId, setEditarId] = useState(null);
 
     // Carregar os jogadores ao carregar a página
     useEffect(() => {
@@ -29,9 +31,21 @@ const App = () => {
             .catch(error => console.error('Erro ao remover jogador:', error));
     };
 
+    // Alterar estado para exibir o formulário de edição
+    const handleEditar = (id) => {
+        setEditarId(id);
+    };
+
+    // Fechar o formulário de edição
+    const fecharEdicao = () => {
+        setEditarId(null);
+    };
+
     return (
         <div>
             <h1>Cadastro de Jogadores</h1>
+
+            
             <input
                 type="text"
                 placeholder="Nome"
@@ -52,14 +66,19 @@ const App = () => {
             />
             <button onClick={adicionarJogador}>Adicionar Jogador</button>
 
+           
             <ul>
                 {jogadores.map(jogador => (
                     <li key={jogador.id}>
                         {jogador.nome} - {jogador.posicao} - {jogador.idade} anos
+                        <button onClick={() => handleEditar(jogador.id)}>Editar</button>
                         <button onClick={() => removerJogador(jogador.id)}>Remover</button>
                     </li>
                 ))}
             </ul>
+
+            
+            {editarId && <EditarJogador jogadorId={editarId} onClose={fecharEdicao} />}
         </div>
     );
 };

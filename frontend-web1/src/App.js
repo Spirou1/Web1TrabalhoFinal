@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import EditarJogador from './components/EditarJogador';
+import './App.css';
+
 
 const App = () => {
     const [jogadores, setJogadores] = useState([]);
@@ -58,51 +60,61 @@ const App = () => {
 
     return (
         <div>
-            <h1>Cadastro de Jogadores</h1>
-
-            <input
-                type="text"
-                placeholder="Nome"
-                value={novoJogador.nome}
-                onChange={e => setNovoJogador({ ...novoJogador, nome: e.target.value })}
-            />
-            <input
-                type="text"
-                placeholder="Posição"
-                value={novoJogador.posicao}
-                onChange={e => setNovoJogador({ ...novoJogador, posicao: e.target.value })}
-            />
-            <input
-                type="number"
-                placeholder="Idade"
-                value={novoJogador.idade}
-                onChange={e => setNovoJogador({ ...novoJogador, idade: e.target.value })}
-            />
-            <button onClick={adicionarJogador}>Adicionar Jogador</button>
-
-            <ul>
+            <h1 className="header">Cadastrar Jogador</h1>
+    
+            {/* Formulário para adicionar jogador */}
+            <form className="player-form">
+                <input
+                    type="text"
+                    placeholder="Nome"
+                    value={novoJogador.nome}
+                    onChange={e => setNovoJogador({ ...novoJogador, nome: e.target.value })}
+                />
+                <input
+                    type="text"
+                    placeholder="Posição"
+                    value={novoJogador.posicao}
+                    onChange={e => setNovoJogador({ ...novoJogador, posicao: e.target.value })}
+                />
+                <input
+                    type="number"
+                    placeholder="Idade"
+                    value={novoJogador.idade}
+                    onChange={e => setNovoJogador({ ...novoJogador, idade: e.target.value })}
+                />
+                <button type="button" onClick={adicionarJogador}>Adicionar Jogador</button>
+            </form>
+    
+            {/* Lista de jogadores */}
+            <ul className="player-list">
                 {jogadores.map(jogador => (
-                    <li key={jogador.id}>
-                        {jogador.nome} - {jogador.posicao} - {jogador.idade} anos
-                        <button onClick={() => handleEditar(jogador.id)}>Editar</button>
-                        <button onClick={() => mostrarModal(jogador.id)}>Remover</button>
+                    <li className="player-item" key={jogador.id}>
+                        <span>
+                            {jogador.nome} - {jogador.posicao} - {jogador.idade} anos
+                        </span>
+                        <div>
+                            <button className="edit-btn" onClick={() => handleEditar(jogador.id)}>Editar</button>
+                            <button className="remove-btn" onClick={() => mostrarModal(jogador.id)}>Remover</button>
+                        </div>
                     </li>
                 ))}
             </ul>
-
+    
+            {/* Formulário de edição */}
             {editarId && <EditarJogador jogadorId={editarId} onClose={fecharEdicao} />}
-
+    
+            {/* Modal de confirmação de remoção */}
             {modalVisible && (
                 <div className="modal">
                     <div className="modal-content">
                         <h3>Tem certeza que deseja remover este jogador?</h3>
-                        <button onClick={removerJogador}>Sim</button>
-                        <button onClick={fecharModal}>Não</button>
+                        <button className="confirm-btn" onClick={removerJogador}>Sim</button>
+                        <button className="cancel-btn" onClick={fecharModal}>Não</button>
                     </div>
                 </div>
             )}
         </div>
     );
-};
+}    
 
 export default App;

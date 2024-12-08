@@ -9,7 +9,7 @@ Enzo Spironelli Pinheiro - GRR20243314
 
 Giovanna Boniatti Prado - 
 
-Joao Victor Leal Gonçalves - 
+Joao Victor Leal Gonçalves - GRR20244529
 
 # Requisitos para rodar o projeto:
 Antes de fazer o clone do repositório, por favor certifique-se de ter instalado as seguintes ferramentas:

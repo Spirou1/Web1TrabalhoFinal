@@ -1,32 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    font-style: normal;
     background-color: #09090B;
-    margin-top: 200px;
-    padding: 0;
-    color: #333;
 }
 
 h1 {
-    color: #FFFF;
+    color: #F2F2F2;
     text-align: center;
-    font-size: 50px;
+    font-size: 30px;
+    margin: 0px;
 }
 
 h2 {
-    color: #FFFF;
+    color: #F2F2F2;
 }
 
 span {
-    color: #FFFF;
+    color: #F2F2F2;
 }
 
 li {
-    color: #FFFF;
-}
-
-header {
-    text-align: center;
-    margin-bottom: -200px;
+    color: #F2F2F2;
 }
 
 .card-container {
@@ -40,50 +37,77 @@ header {
 }
 
 .card-add {
-    display: flex;
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    flex-direction: column;
-}
-
-.add-icon {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 10px;
     cursor: pointer;
 }
 
+.card-add:hover {
+    background-color: #27272A;
+}
+
+.add-icon {
+    width: 100px;
+    height: 100px;
+}
+
 .add-text {
-    color: #FFF;
-    font-weight: bold;
-    font-size: 32px;
+    color: #F2F2F2;
+    font-weight: 600;
+    font-size: 20px;
     margin-bottom: 30px;
 }
 
 .card {
-    background-color: #191919;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 350px;
-    text-align: center;
-    height: 400px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    background-color: #191919;
+    border: 3px solid #27272A;
+    border-radius: 20px;
+    padding: 20px;
+    width: 280px;
+    text-align: center;
+    height: 320px;
     flex-wrap: wrap;
+    overflow-wrap: break-word;
+    white-space: normal; 
+}
+
+.card-body {
+    justify-content: space-between;
+}
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.button1:hover .edit path{
+    stroke: #D62525;
+}
+.button1:hover .edit polygon{
+    stroke: #D62525;
+}
+
+.button1:hover .remove path{
+    fill: #D62525;
 }
 
 .card-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #FFFF;
-    margin-bottom: 10px;
+    font-size: 20px;
+    color: #F2F2F2;
 }
 
 .card-text {
-    font-size: 1.5rem;
-    color: #FFFF;
-    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #F2F2F2;
     line-height: 50px;
 }
 
@@ -100,19 +124,16 @@ header {
     cursor: pointer;
 }
 
-.logo {
-    position: absolute;
-    top: 20px;
-    left: 50px;
-    width: 200px;
-    height: auto;
+header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    position: relative; 
 }
 
-.logo1 {
-    position: absolute;
-    top: 50px;
-    left: 300px;
-    width: 300px;
+.logo {
+    width: 200px; 
+    height: auto;
 }
 
 .modal {
@@ -130,20 +151,21 @@ header {
 
 .modal-content {
     background-color: #191919;
+    border: 3px solid #27272A;
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 20px;
     width: 1000px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     align-items: center;
     justify-content: center;
-    height: 800px;
+    height: 90vh;
 }
 
 .modal-content h2 {
     margin-bottom: 20px;
-    font-size: 1.5rem;
-    color: #FFFF;
+    font-size: 30px;
+    color: #f2f2f2;
 }
 
 .player-form {
@@ -172,30 +194,13 @@ header {
 
 .player-form input:focus,
 .player-form select:focus {
-    border-color: #007bff;
+    border-color: #848487;
     outline: none;
 }
 
 
-.player-form button {
-    padding: 12px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100px;
-}
-
-.player-form button:hover {
-    background-color: #0056b3; 
-}
-
-
 .close-btn {
-    background-color: #dc3545;
+    background-color: #D62525;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -208,21 +213,25 @@ header {
 
 input[type=text], input[type=email], input[type=number]{
     background-color: transparent;
-    border: solid 3px grey;
-    color: #FFF;
+    border: solid 3px #27272A;
+    color: #f2f2f2;
     width: 800px;
 }
 
 .player-form select{
     background-color: transparent;
-    border: solid 3px grey;
-    color: #FFF;
+    border: solid 3px #27272A;
+    color: #f2f2f2;
     width: 820px;
 }
 
+option{
+    color: #09090B;
+  }
+
 input[type=text]:hover, input[type=email]:hover, input[type=number]:hover,
 .player-form select:hover {
-    border-color: red; 
+    border-color: #D62525; 
 }
 
 
@@ -243,9 +252,9 @@ select {
 
 
 .player-form label {
-    color: #FFFF;
+    color: #f2f2f2;
     font-size: 1.1rem; 
-    font-weight: bold; 
+    font-weight: 700; 
     margin-bottom: 8px; 
     text-align: left;
     width: 100%;
@@ -255,4 +264,68 @@ select {
     flex-direction: column;
     display: flex;
     margin-top: 10px;
+}
+
+.delete-modal {
+    background-color: #191919;
+    border: 3px solid #27272A;
+    padding: 40px;
+    border-radius: 20px;
+    width: 400px;  
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    max-width: 100%;
+}
+
+.modal-title {
+    font-size: 20px;
+    color: #f2f2f2;
+    margin-bottom: 30px;
+}
+
+.modal-message {
+    font-size: 16px;
+    font-weight: 500;
+    color: #f2f2f2;
+    margin-bottom: 30px;
+}
+.FormModalButtons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 40px;
+}
+.modal-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px;
+    width: 150px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-red {
+    background-color: #D62525;
+    color: #F2F2F2;
+    transition: background-color 0.3s;
+}
+
+.btn-red:hover {
+    background-color: #ae1e1e;
+}
+
+.btn-white {
+    background-color: #f2f2f2;
+    color: #09090B;
+    transition: background-color 0.3s;
+}
+
+.btn-white:hover {
+    background-color: #d1d1d1;
 }

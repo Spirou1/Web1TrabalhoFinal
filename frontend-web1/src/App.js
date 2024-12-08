@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import EditarJogador from './components/EditarJogador';
 import CardJogador from './components/CardJogador'; 
 import './App.css';
 
@@ -72,25 +71,29 @@ const App = () => {
         setModalEditarVisible(false);
         setJogadorParaEditar(null);
     };
-
+    
     const editarJogador = () => {
+        // Envia os dados editados para a API
         axios.put(`http://localhost:3001/jogadores/${jogadorParaEditar.id}`, jogadorParaEditar)
             .then(response => {
-                const jogadoresAtualizados = jogadores.map(jogador =>
-                    jogador.id === jogadorParaEditar.id ? response.data : jogador
+                // Atualiza o estado local de jogadores
+                setJogadores(prevJogadores => 
+                    prevJogadores.map(jogador =>
+                        jogador.id === jogadorParaEditar.id ? jogadorParaEditar : jogador
+                    )
                 );
-                setJogadores(jogadoresAtualizados);
-                fecharModalEditar(); 
+                fecharModalEditar();
             })
             .catch(error => console.error('Erro ao editar jogador:', error));
-    };
+    };    
 
     return (
         <div>
-            <img src="/corinthians.svg" alt="Logo" className="logo" />
-            <img src="/Group5.svg" className="logo1" />
+            <header>
+                <img src="/CorinthiansLogoGroup.svg" alt="Logo" className="logo" />
+            </header>
 
-            <h1 className="header">Elenco</h1>
+            <h1 className="title">Elenco</h1>
 
             <div className="card-container">
                 <div className="card card-add" onClick={mostrarModalAdicionar}>
@@ -168,10 +171,11 @@ const App = () => {
                                     required
                                 />
                             </div>
-
-                            <button type="submit">Salvar</button>
+                            <div className="FormModalButtons">
+                                <button className="btn btn-white" type="submit">Salvar</button>
+                                <button className="btn btn-red" onClick={fecharModalAdicionar}>Cancelar</button>
+                            </div>
                         </form>
-                        <button className="close-btn" onClick={fecharModalAdicionar}>Fechar</button>
                     </div>
                 </div>
             )}
@@ -236,22 +240,27 @@ const App = () => {
                                     required
                                 />
                             </div>
-
-                            <button type="submit">Salvar</button>
+                            <div className="FormModalButtons">
+                                <button className="btn btn-white" type="submit">Salvar</button>
+                                <button className="btn btn-red" onClick={fecharModalEditar}>Cancelar</button>
+                            </div>
                         </form>
-                        <button className="close-btn" onClick={fecharModalEditar}>Fechar</button>
+                        
                     </div>
                 </div>
             )}
 
             {modalExcluirVisible && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <h3>Tem certeza que deseja remover este jogador?</h3>
-                        <button className="confirm-btn" onClick={removerJogador}>Sim</button>
-                        <button className="cancel-btn" onClick={fecharModalExcluir}>Não</button>
+            <div className="modal">
+                <div className="delete-modal">
+                    <h3 className="modal-title">Excluir Jogador</h3>
+                    <p className="modal-message">Você tem certeza que deseja remover este jogador?</p>
+                    <div className="modal-buttons">
+                        <button className="btn btn-red" onClick={removerJogador}>Sim</button>
+                        <button className="btn btn-white" onClick={fecharModalExcluir}>Não</button>
                     </div>
                 </div>
+            </div>
             )}
         </div>
     );

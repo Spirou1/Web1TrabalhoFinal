@@ -67,7 +67,7 @@ const EditarJogador = ({ jogadorId, onClose }) => {
                     onChange={e => setPosicao(e.target.value)}
                     required
                 >
-                    <option value="" disabled>Selecione uma posição</option>
+                    <option type="position" value="" disabled>Selecione uma posição</option>
                     {posicoes.map(pos => (
                         <option key={pos.id} value={pos.nome}>
                             {pos.nome}

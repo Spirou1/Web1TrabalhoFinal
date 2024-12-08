@@ -32,7 +32,7 @@ cd Web1TrabalhoFinal
 
 cd backend-web1
 
-node index.js
+node app.js
 
 3. Após configurar o backend, navegue até a pasta do frontend para configurá-lo também com:
 cd frontend-web1

@@ -10,7 +10,7 @@ body {
 h1 {
     color: #F2F2F2;
     text-align: center;
-    font-size: 30px;
+    font-size: 50px;
     margin: 0px;
 }
 
@@ -71,6 +71,11 @@ li {
     flex-wrap: wrap;
     overflow-wrap: break-word;
     white-space: normal; 
+    transition: transform .15s;
+}
+
+.card:hover {
+    transform: scale(1.1);
 }
 
 .card-body {
@@ -96,7 +101,7 @@ li {
 }
 
 .card-title {
-    font-size: 20px;
+    font-size: 30px;
     color: #F2F2F2;
 }
 
@@ -105,16 +110,17 @@ li {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
     color: #F2F2F2;
     line-height: 50px;
+    margin-top: -10px;
 }
 
 .card-actions {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 40px;
     margin-top: 0px;
 }
 
@@ -132,7 +138,7 @@ header {
 }
 
 .logo {
-    width: 200px; 
+    width: 400px; 
     height: auto;
 }
 

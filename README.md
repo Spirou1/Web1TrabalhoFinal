@@ -1,7 +1,7 @@
 
 # Projeto Gerenciador de Jogadores do Corinthians
 
-Esse é um projeto feito para a disciplina de Desenvolvimento Web 1 do curso de Análise e Desenvolvimento de Sistemas da Universidade Federal do Paraná, ministrada pelo professor Lucas José de Souza.
+Esse é um projeto feito para a disciplina de Desenvolvimento Web 1 do curso de Análise e Desenvolvimento de Sistemas do Setor de Educação Profissional e Tecnológica (SEPT) da UFPR, ministrada pelo professor Lucas José de Souza.
 
 Alunos: 
 
